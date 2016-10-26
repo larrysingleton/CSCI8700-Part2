@@ -18,7 +18,7 @@ body {
 }
 
 /** Collapse Nav Bar Sooner to accomodate login form **/
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
     .navbar-header {
         float: none;
     }
