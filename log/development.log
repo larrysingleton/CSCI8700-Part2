@@ -330,3 +330,17 @@ Processing by StaticPagesController#contact as HTML
 Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/parking/view" for ::1 at 2016-10-27 19:14:56 -0500
+DEPRECATION WARNING: ActiveRecord::Base.raise_in_transactional_callbacks= is deprecated, has no effect and will be removed without replacement. (called from raise_in_transactional_callbacks= at /Users/ianvaughnkoeppe/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/activerecord-5.0.0.1/lib/active_record/transactions.rb:283)
+Processing by ParkingController#view as HTML
+  Rendering parking/view.html.erb within layouts/application
+  Rendered parking/view.html.erb within layouts/application (544.7ms)
+Completed 200 OK in 699ms (Views: 678.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-4ae9d992eaec8c38ee9d8a199c6d1cb9e410a92a5258bca67fd672c24f5cb39c.css?body=1" for ::1 at 2016-10-27 19:14:57 -0500
+Started GET "/assets/gmap.self-4e50d9d145c251cf72c96b666619bdad4318615b12721258cb6d9f4409d2665b.js?body=1" for ::1 at 2016-10-27 19:14:57 -0500
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-10-27 19:14:57 -0500
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-10-27 19:14:57 -0500
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-10-27 19:14:57 -0500
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-10-27 19:14:57 -0500
