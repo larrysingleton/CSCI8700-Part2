@@ -1,19 +1,12 @@
 Rails.application.routes.draw do
 
   resources :users
+  
   root 'static_pages#home'
 
   get 'static_pages/home'
 
   get 'static_pages/contact'
-
-  get 'user/register'
-
-  post 'user/register'
-
-  post 'user/login'
-
-  post 'user/logout'
 
   get 'parking/view'
 
