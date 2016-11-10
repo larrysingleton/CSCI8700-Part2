@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
+  name: My Name
+  email: email1@email.com
   password: MyString
   defaultBid: 9.99
 
 two:
-  name: MyString
-  email: MyString
+  name: My Name Two
+  email: email2@email.com
   password: MyString
   defaultBid: 9.99
