@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     else
       # Create an error message.
       flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
-      render 'new'
+      render 'static_pages/home'
     end
   end
 
