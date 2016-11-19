@@ -36,4 +36,16 @@ class ParkingController < SecureController
     @request.destroy
     redirect_to parking_view_path
   end
+
+  def accept
+    @request = Request.find(params[:parking][:requestId])
+    @request.isAccepted = true
+    @request.save
+
+    @avail = @request.availability
+    @avail.is_taken = true;
+    @avail.save
+
+    redirect_to parking_view_path
+  end
 end

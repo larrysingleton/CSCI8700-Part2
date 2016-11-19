@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'parking/remove'
   post 'parking/bid'
   post 'parking/removeBid'
+  post 'parking/accept'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

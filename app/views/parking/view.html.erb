@@ -8,24 +8,34 @@
         <%= f.submit "My Spot's Available!", class: "btn btn-success" %>
     <% end %>
 <% else %>
-    <h4>Your Spot is Currently Available to others.</h4>
-
+    <%= form_for(:parking, url: parking_remove_path) do |f| %>
+        <%= f.hidden_field :availability_id, class: 'form-control', value: @availabilities[0].id %>
+        <h4>
+          Your Spot is Currently Available to others.
+          <%= f.submit "Remove Availability!", class: "btn btn-danger", style: "margin-left: 10px;" %>
+        </h4>
+    <% end %>
     <% if @availabilities[0].requests.present? %>
-        <% @availabilities[0].requests.each do |request| %>
-            <p><%= request.user.name %></p>
+        <h4>Bids for Your Spot:</h4>
+        <%= form_for(:parking, url: parking_accept_path) do |f| %>
+            <% @availabilities[0].requests.each do |request| %>
+                <p>
+                  <%= request.user.name %> bids $<%= request.bid %>
+                  <%= f.hidden_field :requestId, class: 'form-control', value: request.id %>
+                  <%= f.submit "Accept", class: "btn btn-success" %>
+                </p>
+            <% end %>
         <% end %>
     <% else %>
         <p>No bids yet...</p>
     <% end %>
-
-    <%= form_for(:parking, url: parking_remove_path) do |f| %>
-        <%= f.hidden_field :availability_id, class: 'form-control', value: @availabilities[0].id %>
-        <%= f.submit "Remove Availability!", class: "btn btn-danger" %>
-    <% end %>
 <% end %>
 
 <div>
-  <h4>Your Open Bids</h4>
+  <% if @user.requests.present? %>
+      <h4>Your Open Bids:</h4>
+  <% end %>
+
   <% @user.requests.each do |request| %>
       <%= form_for(:parking, url: parking_removeBid_path) do |f| %>
           <span class="btn-group">
