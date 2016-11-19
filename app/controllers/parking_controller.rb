@@ -1,16 +1,24 @@
 class ParkingController < SecureController
   def view
+    @user = current_user;
+    @availabilities = @user.availabilities
 
+    @others = Availability.where.not(user_id: @user.id)
   end
 
   def mark
-    long = params[:longitude]
-    lat = params[:latitude]
-    avail = Availability.new()
-    avail.user = current_user
-    avail.longitude = long
-    avail.latitude = lat
-    avail.is_taken = false
-    avail.save()
+    @avail = Availability.new
+    @avail.user = current_user
+    @avail.longitude = params[:parking][:longitude]
+    @avail.latitude = params[:parking][:latitude]
+    @avail.is_taken = false
+    @avail.save
+    redirect_to parking_view_path
+  end
+
+  def remove
+    @avail = Availability.find(params[:parking][:availability_id])
+    @avail.destroy
+    redirect_to parking_view_path
   end
 end

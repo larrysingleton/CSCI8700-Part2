@@ -1,10 +1,19 @@
 <% provide(:title, "Availability") %>
 <h1>Available Spots</h1>
 
-<%= form_for(:session, url: parking_mark_path, :html => {onsubmit: "return fillInLocation();"}) do |f| %>
-    <%= f.hidden_field :longitude, class: 'form-control' %>
-    <%= f.hidden_field :latitude, class: 'form-control' %>
-    <%= f.submit "My Spots Available!", class: "btn btn-success" %>
+<% if !@availabilities.present? %>
+    <%= form_for(:parking, url: parking_mark_path) do |f| %>
+        <%= f.hidden_field :longitude, class: 'form-control' %>
+        <%= f.hidden_field :latitude, class: 'form-control' %>
+        <%= f.submit "My Spot's Available!", class: "btn btn-success" %>
+    <% end %>
+<% else %>
+    <h4>Your Spot is Currently Available to others.</h4>
+    <p>No Bids Yet...</p>
+    <%= form_for(:parking, url: parking_remove_path) do |f| %>
+        <%= f.hidden_field :availability_id, class: 'form-control', value: @availabilities[0].id %>
+        <%= f.submit "Remove Availability!", class: "btn btn-danger" %>
+    <% end %>
 <% end %>
 
 <div id="map-container">
@@ -15,3 +24,30 @@
 
 <%= javascript_include_tag 'gmap', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBbyK0qe0mb8tJdHXO0-ptdX8fHl3gsbms&callback=initMap" %>
+
+<% if @availabilities.present? %>
+    <script>
+      var longitude = <%= @availabilities[0].longitude %>;
+      var latitude = <%= @availabilities[0].latitude %>;
+      var image = "<%= image_path "your-car.png" %>";
+      drawMarker(longitude, latitude, "My Spot", image, "Your Spot");
+    </script>
+<% end %>
+
+<%= @others.each do |spot| %>
+    <script>
+      var user = "<%= spot.user.name %>";
+      var userId = <%= current_user.id %>;
+      var defaultBid = <%= current_user.defaultBid %>;
+      var longitude = <%= spot.longitude %>;
+      var latitude = <%= spot.latitude %>;
+      var image = "<%= image_path "black-simple-car-icon.png" %>";
+      drawMarker(longitude, latitude, user, image,
+          "<p>" + user + "'s Car</p>" +
+          "<form action='/parking/bid' method='post' class='form'>" +
+          "<input type='hidden' value='" + userId + "' />" +
+          "<input type='text' class='form-control' value='" + defaultBid + "' name='bid' />" +
+          "<input type='submit' class='btn btn-default' value='Bid' style='margin-top: 10px;' />" +
+          "</form>");
+    </script>
+<% end %>

@@ -8,15 +8,21 @@ function initMap() {
         center: new google.maps.LatLng(41.251840, -96.011573),
         zoom: 15
     });
-    drawMarkers();
 }
 
-function drawMarkers() {
+function drawMarker(longitude, latitude, title, image, content) {
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(41.248245, -96.016925),
+        position: new google.maps.LatLng(latitude, longitude),
         map: map,
-        title: "Ian"
-    })
+        title: title,
+        icon: image
+    });
+    var infowindow = new google.maps.InfoWindow({
+        content: content
+    });
+    marker.addListener('click', function () {
+        infowindow.open(map, marker);
+    });
 }
 
 function fillInLocation() {
@@ -32,7 +38,6 @@ function fillInLocation() {
 
             document.getElementById("parking_longitude").value = pos.lng;
             document.getElementById("parking_latitude").value = pos.lat;
-            return true;
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -40,6 +45,7 @@ function fillInLocation() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
+fillInLocation();
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
