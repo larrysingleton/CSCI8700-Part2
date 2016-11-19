@@ -32,9 +32,7 @@
 <% end %>
 
 <div>
-  <% if @user.requests.present? %>
-      <h4>Your Open Bids:</h4>
-  <% end %>
+  <h4>Your Open Bids:</h4>
 
   <% @user.requests.each do |request| %>
       <%= form_for(:parking, url: parking_removeBid_path) do |f| %>
@@ -42,6 +40,7 @@
             <p><%= request.user.name %>'s Car for $<%= request.bid %> is
               <% if request.isAccepted %>
                   Accepted!
+                  <a href="/review/view/<%= request.id %>" class="btn btn-default">Write a Review</a>
               <% else %>
                   Pending...
               <% end %>
@@ -56,7 +55,7 @@
   <% end %>
 </div>
 
-<div id=" map-container">
+<div id=" map-container" style="margin-top: 10px;">
   <div id="map-canvas">
 
   </div>

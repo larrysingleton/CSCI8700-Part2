@@ -1,0 +1,9 @@
+<h1>Write a Review</h1>
+<p>Review your experience with this user:</p>
+
+<%= form_for(:review, url: review_submit_path) do |f| %>
+    <p><%= @request.user.name %>
+      $<%= @request.bid %></p>
+    <%= f.hidden_field :requestId, class: 'form-control', value: @request.id %>
+    <%= f.submit "Submit", class: "btn btn-success", style: "margin-left: 10px;" %>
+<% end %>

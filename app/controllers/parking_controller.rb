@@ -18,6 +18,7 @@ class ParkingController < SecureController
 
   def remove
     @avail = Availability.find(params[:parking][:availability_id])
+    @avail.requests.destroy_all
     @avail.destroy
     redirect_to parking_view_path
   end
@@ -25,7 +26,7 @@ class ParkingController < SecureController
   def bid
     @request = Request.new
     @request.user = User.find(params[:userId])
-    @request.availabilities_id = params[:availabilityId]
+    @request.availability_id = params[:availabilityId]
     @request.bid = params[:bid]
     @request.save
     redirect_to parking_view_path
@@ -43,8 +44,7 @@ class ParkingController < SecureController
     @request.save
 
     @avail = @request.availability
-    @avail.is_taken = true;
-    @avail.save
+    @avail.destroy
 
     redirect_to parking_view_path
   end

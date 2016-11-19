@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post 'parking/removeBid'
   post 'parking/accept'
 
+  get 'review/view/:requestId', to: 'review#view'
+  post 'review/submit'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
