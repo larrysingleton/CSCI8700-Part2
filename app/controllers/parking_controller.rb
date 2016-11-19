@@ -4,6 +4,8 @@ class ParkingController < SecureController
   end
 
   def mark
+    long = params[:longitude]
+    lat = params[:latitude]
 
   end
 end

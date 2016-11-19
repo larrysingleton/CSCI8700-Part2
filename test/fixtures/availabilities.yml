@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  longitude: 
+  latitude: 
+  is_taken: 
+  user: one
+
+two:
+  longitude: 
+  latitude: 
+  is_taken: 
+  user: two
