@@ -1,5 +1,13 @@
 <% provide(:title, "Availability") %>
 <h1>Available Spots</h1>
+
+<%= form_for(:parking, url: parking_mark_path, :html => {:class => "navbar-form"}) do |f| %>
+    <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+    <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+    <%= f.submit "Sign in", class: "btn btn-success" %>
+    <a href="/users/new" class="btn btn-default">Register</a>
+<% end %>
+
 <div id="map-container">
   <div id="map-canvas">
 

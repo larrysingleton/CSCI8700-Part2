@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
 
   get 'parking/view'
+  get 'parking/mark'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
