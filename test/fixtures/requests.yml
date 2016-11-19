@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  availabilities: one
+  bid: 
+  isAccepted: false
+
+two:
+  user: two
+  availabilities: two
+  bid: 
+  isAccepted: false

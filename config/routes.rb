@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'parking/view'
   post 'parking/mark'
   post 'parking/remove'
+  post 'parking/bid'
+  post 'parking/removeBid'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

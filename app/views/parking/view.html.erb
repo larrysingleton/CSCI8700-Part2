@@ -16,7 +16,26 @@
     <% end %>
 <% end %>
 
-<div id="map-container">
+<div>
+  <h4>Your Open Bids</h4>
+  <% @user.requests.each do |request| %>
+      <%= form_for(:parking, url: parking_removeBid_path) do |f| %>
+          <div class="">
+            <p><%= request.user.name %>'s Car for $<%= request.bid %> is
+              <% if request.isAccepted %>
+                  Accepted!
+              <% else %>
+                  Pending...
+              <% end %>
+            </p>
+            <%= f.hidden_field :requestId, value: request.id %>
+            <%= f.submit "Cancel", class: "btn btn-danger" %>
+          </div>
+      <% end %>
+  <% end %>
+</div>
+
+<div id=" map-container">
   <div id="map-canvas">
 
   </div>
@@ -34,20 +53,22 @@
     </script>
 <% end %>
 
-<%= @others.each do |spot| %>
+<% @others.each do |spot| %>
     <script>
       var user = "<%= spot.user.name %>";
       var userId = <%= current_user.id %>;
       var defaultBid = <%= current_user.defaultBid %>;
+      var availabilityId = <%= spot.id %>;
       var longitude = <%= spot.longitude %>;
       var latitude = <%= spot.latitude %>;
       var image = "<%= image_path "black-simple-car-icon.png" %>";
       drawMarker(longitude, latitude, user, image,
-          "<p>" + user + "'s Car</p>" +
-          "<form action='/parking/bid' method='post' class='form'>" +
-          "<input type='hidden' value='" + userId + "' />" +
+          "<h5>" + user + "'s Car</h5>" +
+          '<%= form_for(:parking, url: parking_bid_path) do |f| %>' +
+          "<input type='hidden' name='userId' value='" + userId + "' />" +
+          "<input type='hidden' name='availabilityId' value='" + availabilityId + "' />" +
           "<input type='text' class='form-control' value='" + defaultBid + "' name='bid' />" +
           "<input type='submit' class='btn btn-default' value='Bid' style='margin-top: 10px;' />" +
-          "</form>");
+          '<% end %>');
     </script>
 <% end %>
