@@ -23,11 +23,17 @@
       <ul class="nav navbar-nav">
         <li><a href="/static_pages/contact">Contact</a></li>
       </ul>
-      <%= form_for(:session, url: login_path, :html => {:class => "navbar-form navbar-right"}) do |f| %>
-          <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
-          <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
-          <%= f.submit "Sign in", class: "btn btn-success" %>
-          <a href="/users/new" class="btn btn-default">Register</a>
+      <% if current_user.present? %>
+          <div class="navbar-form navbar-right">
+            <a href="/logout" data-method="delete" class="btn btn-danger">Logout</a>
+          </div>
+      <% else %>
+          <%= form_for(:session, url: login_path, :html => {:class => "navbar-form navbar-right"}) do |f| %>
+              <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
+              <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+              <%= f.submit "Sign in", class: "btn btn-success" %>
+              <a href="/users/new" class="btn btn-default">Register</a>
+          <% end %>
       <% end %>
     </div><!--/.nav-collapse -->
   </div>
