@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119050427) do
+ActiveRecord::Schema.define(version: 20161119054938) do
 
   create_table "availabilities", force: :cascade do |t|
     t.float    "longitude"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20161119050427) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "availabilities_id"
+    t.integer  "availability_id"
     t.float    "bid"
     t.boolean  "isAccepted"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["availabilities_id"], name: "index_requests_on_availabilities_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["availability_id"], name: "index_requests_on_availability_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 

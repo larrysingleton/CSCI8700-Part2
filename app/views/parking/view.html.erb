@@ -9,7 +9,15 @@
     <% end %>
 <% else %>
     <h4>Your Spot is Currently Available to others.</h4>
-    <p>No Bids Yet...</p>
+
+    <% if @availabilities[0].requests.present? %>
+        <% @availabilities[0].requests.each do |request| %>
+            <p><%= request.user.name %></p>
+        <% end %>
+    <% else %>
+        <p>No bids yet...</p>
+    <% end %>
+
     <%= form_for(:parking, url: parking_remove_path) do |f| %>
         <%= f.hidden_field :availability_id, class: 'form-control', value: @availabilities[0].id %>
         <%= f.submit "Remove Availability!", class: "btn btn-danger" %>
@@ -20,17 +28,17 @@
   <h4>Your Open Bids</h4>
   <% @user.requests.each do |request| %>
       <%= form_for(:parking, url: parking_removeBid_path) do |f| %>
-          <div class="">
+          <span class="btn-group">
             <p><%= request.user.name %>'s Car for $<%= request.bid %> is
               <% if request.isAccepted %>
                   Accepted!
               <% else %>
                   Pending...
               <% end %>
+              <%= f.submit "Cancel", class: "btn btn-danger", style: "margin-left: 10px;" %>
             </p>
             <%= f.hidden_field :requestId, value: request.id %>
-            <%= f.submit "Cancel", class: "btn btn-danger" %>
-          </div>
+          </span>
       <% end %>
   <% end %>
 </div>
