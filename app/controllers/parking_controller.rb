@@ -3,7 +3,7 @@ class ParkingController < SecureController
     @user = current_user;
     @availabilities = @user.availabilities
 
-    @others = Availability.where.not(user_id: @user.id)
+    @others = Availability.where(is_taken: false).where.not(user_id: @user.id)
   end
 
   def mark
