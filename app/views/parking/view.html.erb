@@ -45,7 +45,10 @@
               <% else %>
                   Pending...
               <% end %>
-              <%= f.submit "Cancel", class: "btn btn-danger", style: "margin-left: 10px;" %>
+
+              <% if !request.isAccepted %>
+                <%= f.submit "Cancel", class: "btn btn-danger", style: "margin-left: 10px;" %>
+              <% end %>
             </p>
             <%= f.hidden_field :requestId, value: request.id %>
           </span>
