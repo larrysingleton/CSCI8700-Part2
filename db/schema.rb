@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119030316) do
+ActiveRecord::Schema.define(version: 20161119031317) do
 
   create_table "availabilities", force: :cascade do |t|
-    t.integer  "longitude"
-    t.integer  "latitude"
+    t.float    "longitude"
+    t.float    "latitude"
     t.boolean  "is_taken"
     t.integer  "user_id"
     t.datetime "created_at", null: false
