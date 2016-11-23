@@ -61,8 +61,8 @@
   </div>
 </div>
 
-<%= javascript_include_tag 'gmap', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBbyK0qe0mb8tJdHXO0-ptdX8fHl3gsbms&callback=initMap" %>
+<%= javascript_include_tag 'gmap', 'data-turbolinks-track': 'reload' %>
 
 <% if @availabilities.present? %>
     <script>
