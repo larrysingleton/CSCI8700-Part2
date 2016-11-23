@@ -61,6 +61,16 @@
   </div>
 </div>
 
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map-canvas"), {
+        center: new google.maps.LatLng(41.251840, -96.011573),
+        zoom: 15
+    });
+  }
+</script>
+
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBbyK0qe0mb8tJdHXO0-ptdX8fHl3gsbms&callback=initMap" %>
 <%= javascript_include_tag 'gmap', 'data-turbolinks-track': 'reload' %>
 

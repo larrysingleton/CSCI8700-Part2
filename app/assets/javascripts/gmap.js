@@ -2,14 +2,6 @@
  * Created by ianvaughnkoeppe on 10/26/16.
  */
 
-var map;
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map-canvas"), {
-        center: new google.maps.LatLng(41.251840, -96.011573),
-        zoom: 15
-    });
-}
-
 function drawMarker(longitude, latitude, title, image, content) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(latitude, longitude),
